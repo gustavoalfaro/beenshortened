@@ -16,3 +16,4 @@ plugins:
 rules:
   semi: [2, 'never']
   react/jsx-filename-extension: [1, { 'extensions': ['.js', '.jsx'] }]
+  object-curly-newline: [2, { 'multiline': true }]
