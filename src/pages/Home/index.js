@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div className="home">
-      The app here
+      The ultimate shortening app
       <Input name="shortening" placeholder="Paste or type you long URL" onChange={onInputChange} />
       <button type="button">Shorten</button>
     </div>

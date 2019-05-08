@@ -17,3 +17,4 @@ rules:
   semi: [2, 'never']
   react/jsx-filename-extension: [1, { 'extensions': ['.js', '.jsx'] }]
   object-curly-newline: [2, { 'consistent': true }]
+  react/jsx-one-expression-per-line: 0
