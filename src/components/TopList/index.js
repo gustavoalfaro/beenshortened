@@ -9,12 +9,22 @@ function TopList({ loading, data, error }) {
 
   if (error) return <ErrorMessage message={error} />
 
-  return data.top.map(shortLink => (
-    <div key={shortLink.id} className="listItem">
-      <div>Title: { shortLink.page_title ? shortLink.page_title : 'N/A' }</div>
-      <div>Destination Link: { shortLink.redirect_link }</div>
-    </div>
-  ))
+  return (
+    <ol>
+      {data.top.map(shortLink => (
+        <li key={shortLink.id}>
+          <div className="listItem">
+            <div className="title">
+              <strong>Title:</strong> { shortLink.page_title ? shortLink.page_title : 'N/A' }
+            </div>
+            <div className="destinationLink">
+              <strong>Destination:</strong> { shortLink.redirect_link }
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  )
 }
 
 export default TopList

@@ -4,7 +4,7 @@ A React app for shortening URLs
 
 ## Overview
 
-This application uses an API to generate short URLs and shows the top most visited
+This application uses an [this](https://github.com/gustavoalfaro/beenshortened-api) API to generate short URLs and shows the top most visited
 shortened URLs.
 
 
