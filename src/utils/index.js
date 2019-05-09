@@ -12,7 +12,7 @@ function useFetch(method, url, params) {
       setData(response.data)
       setLoading(false)
     }).catch((responseError) => {
-      setError(responseError)
+      setError(responseError.response.data.error)
       setLoading(false)
     })
   }

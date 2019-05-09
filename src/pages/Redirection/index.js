@@ -12,7 +12,7 @@ function Redirection({ match }) {
   const { loading, data, error } = useFetch('get', `${getEndpointHost()}/api/v1/link_shortener/${slug}`)
 
   return (
-    <div>
+    <div className="redirectionWrapper">
       <Destination loading={loading} data={data} error={error} />
     </div>
   )

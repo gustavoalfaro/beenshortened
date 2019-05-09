@@ -5,7 +5,7 @@ import './styles.sass'
 
 function Input({ name, onChange, placeholder }) {
   return (
-    <div>
+    <div className="inputWrapper">
       <input type="text" name={name} onChange={onChange} placeholder={placeholder} />
     </div>
   )

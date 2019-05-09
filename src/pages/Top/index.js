@@ -9,8 +9,8 @@ function Top() {
   const { loading, data, error } = useFetch('get', `${getEndpointHost()}/api/v1/link_shortener/top`)
 
   return (
-    <div>
-      <div> Top 100 most visited URLs</div>
+    <div className="topHundredWrapper">
+      <div className="topTitle"> Top 100 most visited URLs</div>
       <TopList loading={loading} data={data} error={error} />
     </div>
   )

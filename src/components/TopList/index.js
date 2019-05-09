@@ -1,13 +1,17 @@
 import React from 'react'
 
-function TopList({ loading, data, error }) {
-  if (loading) return <div> Loading top</div>
+import ErrorMessage from 'components/ErrorMessage'
 
-  if (error) return <div> Something went wrong requesting the top 100</div>
+import './styles.sass'
+
+function TopList({ loading, data, error }) {
+  if (loading) return <div> Loading top 100</div>
+
+  if (error) return <ErrorMessage message={error} />
 
   return data.top.map(shortLink => (
-    <div key={shortLink.id}>
-      <div>Title: { shortLink.page_title }</div>
+    <div key={shortLink.id} className="listItem">
+      <div>Title: { shortLink.page_title ? shortLink.page_title : 'N/A' }</div>
       <div>Destination Link: { shortLink.redirect_link }</div>
     </div>
   ))

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 import Input from 'components/Input'
+import ShortLink from 'components/ShortLink'
 import { getEndpointHost } from 'utils'
 
 import './styles.sass'
@@ -10,33 +11,34 @@ function Home() {
   const [link, setLink] = useState('')
   const [shortLink, setShortLink] = useState('')
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(null)
 
   function onInputChange({ target }) {
     setLink(target.value)
   }
 
   function onShortenClick() {
-    axios.post(`${getEndpointHost()}/api/v1/link_shortener/`, { url: link }).then((response) => {
-      setShortLink(response.data.shortLink)
-      setLoading(false)
-    }).catch((responseError) => {
-      setError(responseError)
-      setLoading(false)
-    })
-
-    console.log(error, loading)
+    if (link) {
+      setLoading(true)
+      axios.post(`${getEndpointHost()}/api/v1/link_shortener/`, { url: link }).then((response) => {
+        setShortLink(response.data.shortLink)
+        setLoading(false)
+      }).catch((shorteningError) => {
+        setError(shorteningError.response.data.error)
+        setLoading(false)
+      })
+    }
   }
 
   return (
     <div className="home">
-      The ultimate shortening app
+      <h2 className="slogan">The Ultimate Shortening App</h2>
       <Input name="link" placeholder="Paste or type you long URL" onChange={onInputChange} />
-      <button type="button" onClick={onShortenClick}>Shorten</button>
-      { shortLink && <div>The short URL is: {window.location.origin}/{shortLink}</div> }
-      <br />
-      <br />
-      See top 100 visited URLs: <a href="/top">here</a>
+      <button className="shortenButton" type="button" onClick={onShortenClick}>Shorten</button>
+      <ShortLink shortLink={shortLink} loading={loading} error={error} />
+      <div className="topLink">
+        <a href="/top">See top 100 visited URLs here</a>
+      </div>
     </div>
   )
 }
